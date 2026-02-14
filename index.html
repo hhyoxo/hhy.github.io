@@ -1,109 +1,111 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>给你的一封情书</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>给小雪儿的情人节</title>
 <style>
-body {
+  /* 页面整体风格 */
+  body {
     margin: 0;
     padding: 0;
-    background: linear-gradient(120deg,#ff9a9e,#fad0c4);
-    overflow: hidden;
-    font-family: "微软雅黑", sans-serif;
+    font-family: "Helvetica Neue", "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: linear-gradient(135deg, #ffe0e6, #ffd9f0);
+    overflow-x: hidden;
+    color: #333;
+  }
+
+  .section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    color: white;
-}
-
-.container {
-    position: relative;
-    top: 20vh;
     padding: 20px;
-}
+    box-sizing: border-box;
+    position: relative;
+  }
 
-h1 {
-    font-size: 26px;
-}
-
-#text {
-    font-size: 20px;
-    margin-top: 20px;
-    min-height: 60px;
-}
-
-button {
-    margin-top: 30px;
-    padding: 12px 25px;
-    font-size: 18px;
-    border: none;
-    border-radius: 30px;
-    background-color: white;
+  h1 {
+    font-size: 2em;
     color: #ff4d6d;
-    cursor: pointer;
-    box-shadow: 0 0 10px rgba(255,255,255,0.8);
-}
+    margin-bottom: 20px;
+  }
 
-button:hover {
-    transform: scale(1.1);
-}
+  p {
+    font-size: 1.2em;
+    line-height: 1.6;
+    max-width: 300px;
+    margin: 10px auto;
+    color: #555;
+  }
 
-.heart {
+  .photo {
+    width: 80%;
+    max-width: 350px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    margin: 20px 0;
+  }
+
+  .heart {
     position: absolute;
-    color: rgba(255,255,255,0.8);
-    animation: float 5s linear infinite;
-}
+    width: 30px;
+    height: 30px;
+    background: url('https://i.ibb.co/8XvFqW2/heart.png') no-repeat center center;
+    background-size: contain;
+    bottom: 0;
+    animation: floatHeart 5s linear infinite;
+    pointer-events: none;
+  }
 
-@keyframes float {
-    0% {transform: translateY(100vh);}
-    100% {transform: translateY(-10vh);}
-}
+  @keyframes floatHeart {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(-500px) rotate(360deg); opacity: 0; }
+  }
+
+  /* 多个心形随机位置和动画延迟 */
+  .heart:nth-child(1) { left: 10%; animation-delay: 0s; }
+  .heart:nth-child(2) { left: 30%; animation-delay: 1s; }
+  .heart:nth-child(3) { left: 50%; animation-delay: 2s; }
+  .heart:nth-child(4) { left: 70%; animation-delay: 3s; }
+  .heart:nth-child(5) { left: 90%; animation-delay: 4s; }
+
 </style>
 </head>
-
 <body>
 
-<div class="container">
-    <h1>❤️ 情人节快乐 ❤️</h1>
-    <div id="text"></div>
-    <button onclick="showLove()">点我一下</button>
-</div>
+<!-- 顶部标题 -->
+<section class="section">
+  <h1>❤️ 给小雪儿的情人节 ❤️</h1>
+  <p>小雪儿，25年4月2日我们结为夫妻，从那天起，你就一直是我生命里最温柔、最美丽的人。</p>
+</section>
 
-<script>
-const message = "遇见你，是我这一生最美的意外。\n从此以后，四季都是你。\n今天，我想正式告诉你 —— 我喜欢你 ❤️";
+<!-- 合照展示 -->
+<section class="section">
+  <img class="photo" src="https://via.placeholder.com/350x350.png?text=%E6%88%91%E4%BB%AC%E7%9A%84%E5%90%88%E7%85%A7" alt="我们">
+  <p>这是我们最美的时光，也是我最珍惜的回忆。</p>
+</section>
 
-let i = 0;
-function typing() {
-    if (i < message.length) {
-        document.getElementById("text").innerHTML += message.charAt(i) === "\n" ? "<br>" : message.charAt(i);
-        i++;
-        setTimeout(typing, 80);
-    }
-}
+<!-- 我的心意 -->
+<section class="section">
+  <p>小雪儿，我最想对你说：</p>
+  <h1>“希望我们今后的每一天都是幸福顺利的。”</h1>
+</section>
 
-typing();
+<!-- 祝福 -->
+<section class="section">
+  <h1>情人节快乐！</h1>
+  <p>爱你的老公大人</p>
+</section>
 
-function showLove(){
-    alert("❤️ 你愿意做我的女朋友吗？ ❤️");
-}
-
-// 爱心背景
-function createHeart() {
-    const heart = document.createElement("div");
-    heart.className = "heart";
-    heart.innerHTML = "❤";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = Math.random() * 20 + 10 + "px";
-    heart.style.animationDuration = Math.random() * 3 + 3 + "s";
-    document.body.appendChild(heart);
-
-    setTimeout(() => {
-        heart.remove();
-    }, 5000);
-}
-
-setInterval(createHeart, 300);
-</script>
+<!-- 飘动爱心 -->
+<div class="heart"></div>
+<div class="heart"></div>
+<div class="heart"></div>
+<div class="heart"></div>
+<div class="heart"></div>
 
 </body>
 </html>
