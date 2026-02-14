@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>给你的一封情书</title>
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(120deg,#ff9a9e,#fad0c4);
+    overflow: hidden;
+    font-family: "微软雅黑", sans-serif;
+    text-align: center;
+    color: white;
+}
+
+.container {
+    position: relative;
+    top: 20vh;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 26px;
+}
+
+#text {
+    font-size: 20px;
+    margin-top: 20px;
+    min-height: 60px;
+}
+
+button {
+    margin-top: 30px;
+    padding: 12px 25px;
+    font-size: 18px;
+    border: none;
+    border-radius: 30px;
+    background-color: white;
+    color: #ff4d6d;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(255,255,255,0.8);
+}
+
+button:hover {
+    transform: scale(1.1);
+}
+
+.heart {
+    position: absolute;
+    color: rgba(255,255,255,0.8);
+    animation: float 5s linear infinite;
+}
+
+@keyframes float {
+    0% {transform: translateY(100vh);}
+    100% {transform: translateY(-10vh);}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>❤️ 情人节快乐 ❤️</h1>
+    <div id="text"></div>
+    <button onclick="showLove()">点我一下</button>
+</div>
+
+<script>
+const message = "遇见你，是我这一生最美的意外。\n从此以后，四季都是你。\n今天，我想正式告诉你 —— 我喜欢你 ❤️";
+
+let i = 0;
+function typing() {
+    if (i < message.length) {
+        document.getElementById("text").innerHTML += message.charAt(i) === "\n" ? "<br>" : message.charAt(i);
+        i++;
+        setTimeout(typing, 80);
+    }
+}
+
+typing();
+
+function showLove(){
+    alert("❤️ 你愿意做我的女朋友吗？ ❤️");
+}
+
+// 爱心背景
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = Math.random() * 20 + 10 + "px";
+    heart.style.animationDuration = Math.random() * 3 + 3 + "s";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 5000);
+}
+
+setInterval(createHeart, 300);
+</script>
+
+</body>
+</html>
